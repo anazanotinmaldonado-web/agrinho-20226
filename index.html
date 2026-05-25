@@ -107,6 +107,7 @@
     <header>
         <h1>🍅 Estufa Inteligente de Tomates</h1>
         <p>Projeto Agrinho: Equilíbrio entre Produção e Meio Ambiente</p>
+        <p style="margin-top: 8px; font-size: 0.95rem; opacity: 0.9;">Por Ana Beatriz Zanotin</p>
     </header>
 
     <div class="container">
@@ -170,4 +171,29 @@
             } else if (agua < 20) {
                 msg = "Seca! A planta não tem água suficiente para fazer a fotossíntese.";
                 emoji = "🍂"; corMsg = "#d32f2f";
-            } else if (temp > 3
+            } else if (temp > 30) {
+                msg = "Muito quente! O tomate sofre com estresse térmico e a produção cai.";
+                emoji = "🥵"; corMsg = "#d32f2f";
+            } else if (temp < 15) {
+                msg = "Muito frio! A planta precisa de mais calor para crescer bem.";
+                emoji = "🧊"; corMsg = "#d32f2f";
+            } else if (adubo > 80) {
+                msg = "Atenção: excesso de adubo pode poluir o solo e prejudicar a plantação.";
+                emoji = "⚠️"; corMsg = "#d32f2f";
+            } else if (adubo < 20) {
+                msg = "Pouco adubo: a planta não recebe nutrientes suficientes para crescer forte.";
+                emoji = "🍃"; corMsg = "#d32f2f";
+            } else {
+                msg = "Tudo perfeito! O tomate está com saúde máxima. 🌍💚";
+                emoji = "🍅";
+                corMsg = "#2e7d32";
+            }
+
+            document.getElementById('desenho-tomate').innerText = emoji;
+            const elementoMensagem = document.getElementById('mensagem-alerta');
+            elementoMensagem.innerText = msg;
+            elementoMensagem.style.color = corMsg;
+        }
+    </script>
+</body>
+</html>
