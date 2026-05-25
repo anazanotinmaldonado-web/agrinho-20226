@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estufa Inteligente - Projeto Agrinho</title>
+    
+    <style>
+        :root {
+            --verde-escuro: #2e7d32;
+            --verde-claro: #81c784;
+            --terra: #795548;
+            --fundo: #f1f8e9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fundo);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: var(--verde-escuro);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 28px; }
+        header p { margin: 5px 0 0 0; font-size: 16px; opacity: 0.9; }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 { color: var(--verde-escuro); }
+
+        /* Estilo do Simulador */
+        .simulador-caixa {
+            border: 3px solid var(--verde-claro);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #fafafa;
+        }
+
+        .painel-status {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--terra);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .botoes-acao {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: var(--verde-claro);
+            border: none;
+            color: #000;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: var(--verde-escuro); color: white; }
+
+        #mensagem-alerta {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d32f2f;
+            min-height: 25px;
+            margin-top: 15px;
+        }
+
+        #desenho-tomate {
+            font-size: 80px;
+            margin: 20px 0;
+            transition: 0.5s;
+        }
+
+        .explicacao { text-align: left; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🍅 Estufa Inteligente de Tomates</h1>
+        <p>Projeto Agrinho: Equilíbrio entre Produção e Meio Ambiente</p>
+    </header>
+
+    <div class="container">
+        <div class="explicacao">
+            <h2>O Desafio do Agricultor</h2>
+            <p>Para produzir alimentos sem agredir o meio ambiente, precisamos de <strong>equilíbrio</strong>. Se usarmos água ou adubo demais, desperdiçamos recursos e poluímos o solo. Se usarmos de menos, a planta morre e não há produção.</p>
+            <p><strong>Sua missão:</strong> Use os botões do simulador abaixo para manter o tomate saudável. A água e o adubo ideais ficam em torno de 50%, e a temperatura ideal é 22°C.</p>
+        </div>
+
+        <div class="simulador-caixa">
+            <div class="painel-status">
+                <div>💧 Água: <span id="val-agua">50</span>%</div>
+                <div>🌡️ Temp: <span id="val-temp">22</span>°C</div>
+                <div>🌱 Adubo: <span id="val-adubo">50</span>%</div>
+            </div>
+
+            <div id="desenho-tomate">🍅</div>
+            <div id="mensagem-alerta">Tudo perfeito! O tomate está crescendo bem.</div>
+
+            <div class="botoes-acao">
+                <button onclick="alterar('agua', 10)">+ Regar</button>
+                <button onclick="alterar('agua', -10)">- Drenar</button>
+                <button onclick="alterar('temp', 2)">+ Aquecer</button>
+                <button onclick="alterar('temp', -2)">- Ventilar</button>
+                <button onclick="alterar('adubo', 10)">+ Adubar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis iniciais da nossa estufa
+        let agua = 50;
+        let temp = 22;
+        let adubo = 50;
+
+        // Função que muda os valores quando o usuário clica nos botões
+        function alterar(tipo, quantidade) {
+            if (tipo === 'agua') agua += quantidade;
+            if (tipo === 'temp') temp += quantidade;
+            if (tipo === 'adubo') adubo += quantidade;
+
+            atualizarTela();
+        }
+
+        // Função que atualiza os números na tela e checa a saúde do tomate
+        function atualizarTela() {
+            // Atualiza os textos no HTML
+            document.getElementById('val-agua').innerText = agua;
+            document.getElementById('val-temp').innerText = temp;
+            document.getElementById('val-adubo').innerText = adubo;
+
+            // Variáveis para a mensagem e a imagem do tomate
+            let msg = "Tudo perfeito! O tomate está com saúde máxima. 🌍💚";
+            let emoji = "🍅";
+            let corMsg = "#2e7d32"; // Verde (Sucesso)
+
+            // Lógica do Equilíbrio Ambiental (As Regras do Jogo)
+            if (agua > 80) {
+                msg = "Alerta! Água demais! Desperdício de recursos e risco de fungos nas raízes.";
+                emoji = "🥀"; corMsg = "#d32f2f";
+            } else if (agua < 20) {
+                msg = "Seca! A planta não tem água suficiente para fazer a fotossíntese.";
+                emoji = "🍂"; corMsg = "#d32f2f";
+            } else if (temp > 3
