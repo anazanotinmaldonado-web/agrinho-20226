@@ -1,0 +1,137 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E PALETA DE CORES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --verde-escuro: #1b4332;
+    --verde-principal: #2d6a4f;
+    --verde-claro: #d8f3dc;
+    --tomate: #e63946;
+    --cinza-claro: #f8f9fa;
+    --texto-escuro: #2b2d42;
+}
+
+body {
+    background-color: var(--cinza-claro);
+    color: var(--texto-escuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO (HEADER)
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-principal));
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   3. CONTAINER PRINCIPAL E SEÇÕES
+   ========================================================================== */
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: var(--verde-escuro);
+    border-bottom: 3px solid var(--verde-claro);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   4. LAYOUT DO SIMULADOR (PAINEL INTERATIVO)
+   ========================================================================== */
+.simulador-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Coluna dos Controles (Sliders) */
+.controles {
+    flex: 1;
+    min-width: 300px;
+}
+
+.controle-grupo {
+    margin-bottom: 1.5rem;
+    background: var(--cinza-claro);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 5px solid var(--verde-principal);
+}
+
+.controle-grupo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--verde-escuro);
+}
+
+/* Estilização das barras de deslizar (sliders) */
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    transition: background 0.3s;
+}
+
+/* Coluna da Exibição Visual (Planta e Status) */
+.visualizacao {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#imagem-tomate {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Caixa de Feedback/Status que muda com o Javascript */
+.status-box {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--verde-claro);
+    border: 1px solid var(--verde-principal);
